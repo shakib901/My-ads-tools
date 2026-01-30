@@ -27,6 +27,13 @@ body{
 h2{
   text-align:center;
   color:#1877f2;
+  margin-bottom:5px;
+}
+.dev{
+  text-align:center;
+  font-size:14px;
+  color:#555;
+  margin-bottom:20px;
 }
 .stats{
   display:flex;
@@ -51,18 +58,18 @@ button{
 .blue{background:#1877f2}
 .green{background:#28a745}
 .red{background:#dc3545}
-button:disabled{opacity:.6}
 </style>
 </head>
 
 <body>
 <div class="card">
-  <h2>Telegram Mini Earning App</h2>
+  <h2>Telegram Mini Self Earning App</h2>
+  <div class="dev">Developed by Sakib</div>
 
   <div class="stats">
     <div>
       <h3 id="ads">0</h3>
-      <p>Ads Watched</p>
+      <p>Completed Ads</p>
     </div>
     <div>
       <h3 id="points">0</h3>
@@ -74,13 +81,15 @@ button:disabled{opacity:.6}
   <button class="blue" onclick="rewardPopup()">📢 Rewarded Popup</button>
 
   <button class="green" onclick="withdraw()">Withdraw</button>
-  <button class="red" onclick="resetData()">Reset</button>
+  <button class="red" onclick="resetData()">Reset Count</button>
 </div>
 
 <script>
 let ads = Number(localStorage.getItem("ads")) || 0;
 let points = Number(localStorage.getItem("points")) || 0;
-let cooldown = false;
+
+const adsEl = document.getElementById("ads");
+const pointsEl = document.getElementById("points");
 
 updateUI();
 
@@ -89,20 +98,8 @@ function updateUI(){
   pointsEl.innerText = points;
 }
 
-const adsEl = document.getElementById("ads");
-const pointsEl = document.getElementById("points");
-
-/* 🔹 Anti Spam Cooldown (High CPM Safe) */
-function startCooldown(){
-  cooldown = true;
-  setTimeout(()=>cooldown=false, 8000); // 8 sec gap
-}
-
 /* ✅ Rewarded Interstitial */
 function rewardInterstitial(){
-  if(cooldown) return alert("Please wait a few seconds");
-  startCooldown();
-
   show_10539995().then(()=>{
     ads++;
     points++;
@@ -110,15 +107,11 @@ function rewardInterstitial(){
     localStorage.setItem("ads", ads);
     localStorage.setItem("points", points);
     updateUI();
-
   }).catch(()=>{});
 }
 
 /* ✅ Rewarded Popup */
 function rewardPopup(){
-  if(cooldown) return alert("Please wait a few seconds");
-  startCooldown();
-
   show_10539995('pop').then(()=>{
     ads++;
     points++;
@@ -126,7 +119,6 @@ function rewardPopup(){
     localStorage.setItem("ads", ads);
     localStorage.setItem("points", points);
     updateUI();
-
   }).catch(()=>{});
 }
 
@@ -139,7 +131,7 @@ function withdraw(){
 }
 
 function resetData(){
-  if(!confirm("Reset all data?")) return;
+  if(!confirm("Are you sure?")) return;
   localStorage.clear();
   ads = 0;
   points = 0;
