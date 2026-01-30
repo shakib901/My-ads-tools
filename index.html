@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram Mini Earning App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Monetag SDK -->
+  <script src="https://alwingulla.com/88/tag.min.js" data-zone="10531747" async></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #f2f4f7;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1877f2;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .dev {
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      background: #eef1f4;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stats div {
+      text-align: center;
+      width: 50%;
+    }
+
+    .stats h2 {
+      margin: 0;
+      color: green;
+      font-size: 26px;
+    }
+
+    .stats p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .blue { background: #1877f2; }
+    .green { background: #28a745; }
+    .red { background: #dc3545; }
+
+    button:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Telegram Mini Self Earning App</h1>
+  <div class="dev">Developed by Shakib</div>
+
+  <div class="stats">
+    <div>
+      <h2 id="ads">0</h2>
+      <p>Completed Ads</p>
+    </div>
+    <div>
+      <h2 id="points">0</h2>
+      <p>Total Points</p>
+    </div>
+  </div>
+
+  <button class="blue" onclick="showAd()">Reward Interstitial</button>
+  <button class="blue" onclick="showAd()">Reward Popup</button>
+  <button class="blue" onclick="showAd()">In-App Interstitial</button>
+
+  <button class="green" onclick="withdraw()">Withdraw</button>
+  <button class="red" onclick="resetCount()">Reset Count</button>
+</div>
+
+<script>
+  let ads = localStorage.getItem("ads") || 0;
+  let points = localStorage.getItem("points") || 0;
+
+  document.getElementById("ads").innerText = ads;
+  document.getElementById("points").innerText = points;
+
+  function showAd() {
+    if (typeof show_10531747 !== "function") {
+      alert("Ad not ready yet!");
+      return;
+    }
+
+    show_10531747().then(() => {
+      ads++;
+      points++;
+
+      localStorage.setItem("ads", ads);
+      localStorage.setItem("points", points);
+
+      document.getElementById("ads").innerText = ads;
+      document.getElementById("points").innerText = points;
+    });
+  }
+
+  function withdraw() {
+    if (points < 10) {
+      alert("Minimum 10 points required!");
+      return;
+    }
+    alert("Withdraw request sent!");
+  }
+
+  function resetCount() {
+    if (!confirm("Are you sure?")) return;
+    ads = 0;
+    points = 0;
+    localStorage.clear();
+    document.getElementById("ads").innerText = 0;
+    document.getElementById("points").innerText = 0;
+  }
+</script>
+
+</body>
+</html>
