@@ -1,425 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sakib Ads 360</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
-
-* { box-sizing:border-box; margin:0; padding:0; font-family:'Poppins', sans-serif; }
-
-body {
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#0d1b2a;
-    color:#e0e1dd;
-    padding:10px;
-}
-
-.container {
-    background: rgba(27, 38, 59, 0.95);
-    backdrop-filter: blur(12px);
-    border-radius:28px;
-    width:340px;
-    padding:30px 20px;
-    text-align:center;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-    border:1px solid rgba(162,210,255,0.2);
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-}
-
-h1 {
-    font-size:28px;
-    font-weight:700;
-    color:#a2d2ff;
-    margin-bottom:8px;
-}
-
-.subtitle {
-    font-size:16px;
-    color:#a2d2ff;
-    margin-bottom:25px;
-    font-weight:600;
-    opacity:0.9;
-}
-
-/* Stats */
-.stats p{
-    font-size:20px;
-    margin:15px 0;
-    font-weight:600;
-    color:#e0e1dd;
-}
-
-/* Progress Circle */
-.progress-circle {
-    width:140px;
-    height:140px;
-    margin:25px auto;
-    position:relative;
-}
-
-.progress-circle svg {
-    width:140px;
-    height:140px;
-    transform: rotate(-90deg);
-}
-
-.progress-circle circle {
-    cx:70;
-    cy:70;
-    r:60;
-    fill:none;
-    stroke-width:12;
-}
-
-.progress-circle .bg {
-    stroke: rgba(162,210,255,0.25);
-}
-
-.progress-circle .progress {
-    stroke: #a2d2ff;
-    stroke-linecap:round;
-    stroke-dasharray: 377;
-    stroke-dashoffset: 377;
-    transition: stroke-dashoffset 1s ease;
-}
-
-.progress-text {
-    position:absolute;
-    top:50%; left:50%;
-    transform:translate(-50%,-50%);
-    font-size:28px;
-    font-weight:700;
-    color:#a2d2ff;
-}
-
-/* Buttons */
-.buttons button {
-    width:100%;
-    padding:14px;
-    margin:10px 0;
-    border:none;
-    border-radius:18px;
-    font-size:17px;
-    font-weight:600;
-    cursor:pointer;
-    color:#0d1b2a;
-    background:#a2d2ff;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 18px rgba(162,210,255,0.3);
-}
-.buttons button:hover{
-    background:#8ab8ff;
-    transform: translateY(-3px);
-}
-.buttons button:disabled{
-    background:#415a77;
-    color:#778da9;
-    transform:none;
-    box-shadow:none;
-    opacity:0.7;
-}
-
-/* Footer Credit */
-.footer-credit {
-    font-size:13px;
-    color:#778da9;
-    margin-top:20px;
-    opacity:0.8;
-}
-
-/* Telegram Bubble */
-.telegram-bubble {
-    position:fixed;
-    bottom:15px;
-    right:15px;
-    width:55px;
-    height:55px;
-    background:#0088cc;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow: 0 8px 20px rgba(0,136,204,0.4);
-    transition: all 0.3s ease;
-    z-index:100;
-}
-.telegram-bubble:hover{
-    transform:scale(1.15);
-}
-.telegram-bubble img{
-    width:32px;
-    height:32px;
-}
-
-/* Success Message */
-.success-msg {
-    position:fixed;
-    top:20px;
-    left:50%;
-    transform:translateX(-50%);
-    background:rgba(162,210,255,0.25);
-    padding:12px 28px;
-    border-radius:28px;
-    color:#a2d2ff;
-    font-weight:600;
-    font-size:17px;
-    border:1px solid #a2d2ff;
-    opacity:0;
-    transition: all 0.5s ease;
-    pointer-events:none;
-    box-shadow:0 0 18px rgba(162,210,255,0.4);
-}
-.success-msg.show {
-    opacity:1;
-    transform:translateX(-50%) translateY(10px);
-}
-
-/* Limit Modal */
-.limit-modal {
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,0.85);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:300;
-}
-.limit-modal-content {
-    background: rgba(27, 38, 59, 0.95);
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-    max-width:300px;
-    border:2px solid #a2d2ff;
-    box-shadow: 0 0 30px rgba(162,210,255,0.4);
-}
-#modal-message {
-    font-size:18px;
-    color:#e0e1dd;
-    margin-bottom:25px;
-    line-height:1.5;
-}
-#reset-limit-btn {
-    padding:12px 30px;
-    background:#ff4444;
-    color:white;
-    border:none;
-    border-radius:12px;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
-}
-#reset-limit-btn:hover {
-    background:#ff6666;
-    transform:scale(1.05);
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>রিওয়ার্ড অ্যাপ</title>
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- Monetag SDK (আপনার zone দিয়ে) -->
+    <script src="//libtl.com/sdk.js" data-zone="10539995" data-sdk="show_10539995"></script>
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+            margin: 0;
+            min-height: 100vh;
+        }
+        h1, h2 {
+            color: var(--tg-theme-hint-color, #999999);
+        }
+        button {
+            padding: 15px 30px;
+            margin: 15px;
+            font-size: 18px;
+            background: var(--tg-theme-button-color, #0088cc);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:disabled {
+            opacity: 0.6;
+        }
+        #points {
+            font-size: 32px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+    <h1>স্বাগতম!</h1>
+    <h2>রিওয়ার্ড মিনি অ্যাপ</h2>
+    <p>বর্তমান পয়েন্ট: <span id="points">0</span></p>
+    
+    <button id="interstitialBtn">ইন্টারস্টিশিয়াল অ্যাড দেখে ১০০ পয়েন্ট নিন</button>
+    <br>
+    <button id="popupBtn">পপআপ অ্যাড খুলে ১০০ পয়েন্ট নিন</button>
 
-<div class="container">
-    <div>
-        <h1>MY ADS TOOL V3</h1>
-        <div class="subtitle">Watch Ads & Track Progress</div>
+    <script>
+        // Telegram WebApp initialize
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
 
-        <div class="stats">
-            <p>Watched Ads: <span id="watched-ads">0</span></p>
-        </div>
+        // Points system
+        let points = 0;
+        const pointsDisplay = document.getElementById('points');
 
-        <div class="progress-circle">
-            <svg>
-                <circle class="bg" cx="70" cy="70" r="60"></circle>
-                <circle class="progress" cx="70" cy="70" r="60"></circle>
-            </svg>
-            <div class="progress-text" id="ads-progress">0/60</div>
-        </div>
-
-        <div class="buttons">
-            <button id="watch-ad-btn">Watch Ad</button>
-            <button id="reward-ad-btn">Watch Reward Popup</button>
-            <button id="auto-ad-btn" onclick="startAutoAds()">Auto Ads</button>
-            <button id="stop-auto-btn" onclick="stopAutoAds()" disabled>Stop Auto</button>
-        </div>
-    </div>
-
-    <div class="footer-credit">Developed By SAKIB HOSSAIN</div>
-</div>
-
-<a href="https://t.me/bestearningmethod" target="_blank" class="telegram-bubble">
-    <img src="https://upload.wikimedia.org/wikipedia/svg" alt="Telegram">
-</a>
-
-<div class="success-msg" id="success-msg">Ad Completed!</div>
-
-<!-- Limit Modal -->
-<div class="limit-modal" id="limit-modal">
-    <div class="limit-modal-content">
-        <p id="modal-message"></p>
-        <button id="reset-limit-btn">Reset Count</button>
-    </div>
-</div>
-
-<!-- Monetag SDK -->
-<script src='//libtl.com/sdk.js' data-zone='10539995' data-sdk='show_10539995'></script>
-
-<script>
-let normalAdsCount = parseInt(localStorage.getItem('normalAdsCount')) || 0;
-let rewardAdsCount = parseInt(localStorage.getItem('rewardAdsCount')) || 0;
-let autoAdInterval;
-let monetagLoaded = false;
-
-const AD_LIMIT = 60;
-const CIRCUMFERENCE = 377;
-
-const AD_FUNCTION_NAME = 'show_10539995';
-
-// Initialize
-document.getElementById('watched-ads').textContent = normalAdsCount;
-updateProgressCircle();
-
-document.getElementById('watch-ad-btn').disabled = true;
-
-function checkSDK(){
-    if(typeof window[AD_FUNCTION_NAME] === 'function'){
-        monetagLoaded = true;
-        document.getElementById('watch-ad-btn').disabled = false;
-    } else setTimeout(checkSDK, 500);
-}
-window.addEventListener('DOMContentLoaded', checkSDK);
-
-function updateProgressCircle(){
-    const progress = normalAdsCount / AD_LIMIT;
-    const offset = CIRCUMFERENCE - (progress * CIRCUMFERENCE);
-    document.querySelector('.progress-circle .progress').style.strokeDashoffset = offset;
-    document.getElementById('ads-progress').textContent = normalAdsCount + '/' + AD_LIMIT;
-}
-
-function showSuccess(msg = 'Ad Completed!'){
-    const successMsg = document.getElementById('success-msg');
-    successMsg.textContent = msg;
-    successMsg.classList.add('show');
-    setTimeout(() => successMsg.classList.remove('show'), 2000);
-}
-
-function checkNormalLimit(){
-    if(normalAdsCount >= AD_LIMIT) return false;
-    return true;
-}
-
-function checkRewardLimit(){
-    if(rewardAdsCount >= AD_LIMIT) return false;
-    return true;
-}
-
-function showLimitModal(mode){
-    const modal = document.getElementById('limit-modal');
-    const message = document.getElementById('modal-message');
-    const resetBtn = document.getElementById('reset-limit-btn');
-
-    if(mode === 'normal'){
-        message.textContent = "You have reached the 60 ads limit for normal ads.\nPlease watch Reward Popup ads now and change your IP to continue.";
-        resetBtn.onclick = () => {
-            normalAdsCount = 0;
-            localStorage.setItem('normalAdsCount', normalAdsCount);
-            document.getElementById('watched-ads').textContent = normalAdsCount;
-            updateProgressCircle();
-            modal.style.display = 'none';
-        };
-    } else if(mode === 'reward'){
-        message.textContent = "You have reached the 60 ads limit for Reward Popup.\nPlease wait 10 minutes and change your IP to continue.";
-        resetBtn.onclick = () => {
-            rewardAdsCount = 0;
-            localStorage.setItem('rewardAdsCount', rewardAdsCount);
-            modal.style.display = 'none';
-        };
-    }
-    modal.style.display = 'flex';
-}
-
-// Normal Watch Ad (এখানে 'pop' যোগ করা হয়েছে যাতে পেজ রিডাইরেক্ট না হয়)
-document.getElementById('watch-ad-btn').addEventListener('click', ()=>{
-    if(!monetagLoaded){ alert('Ad service not loaded yet!'); return; }
-    if(!checkNormalLimit()){ showLimitModal('normal'); return; }
-
-    window[AD_FUNCTION_NAME]('pop').then(()=>{
-        normalAdsCount++;
-        document.getElementById('watched-ads').textContent = normalAdsCount;
-        localStorage.setItem('normalAdsCount', normalAdsCount);
-        updateProgressCircle();
-        showSuccess('Ad Completed!');
-
-        if(normalAdsCount >= AD_LIMIT){
-            showLimitModal('normal');
-            stopAutoAds();
+        function updatePoints() {
+            pointsDisplay.textContent = points;
         }
-    }).catch(err=>{ console.error(err); alert('Ad failed or blocked!'); });
-});
 
-// Reward Popup Ad (আগের মতোই)
-document.getElementById('reward-ad-btn').addEventListener('click', ()=>{
-    if(!monetagLoaded){ alert('Ad service not loaded yet!'); return; }
-    if(!checkRewardLimit()){ showLimitModal('reward'); return; }
-
-    window[AD_FUNCTION_NAME]('pop').then(()=>{
-        rewardAdsCount++;
-        localStorage.setItem('rewardAdsCount', rewardAdsCount);
-        showSuccess('Reward Ad Completed!');
-
-        if(rewardAdsCount >= AD_LIMIT){
-            showLimitModal('reward');
+        // Preload interstitial ad (better experience)
+        if (typeof show_10539995 === 'function') {
+            show_10539995({ type: 'preload' }).catch(() => {});
         }
-    }).catch(err=>{
-        console.error(err);
-        alert('Reward Ad failed!');
-    });
-});
 
-// Auto Ads (এখানেও 'pop' ব্যবহার করা হচ্ছে)
-function startAutoAds(){
-    if(!checkNormalLimit()) { showLimitModal('normal'); return; }
-    autoAdInterval = setInterval(()=>{
-        if(normalAdsCount < AD_LIMIT){
-            // সরাসরি pop মোডে অ্যাড কল করা হচ্ছে
-            window[AD_FUNCTION_NAME]('pop').then(()=>{
-                normalAdsCount++;
-                document.getElementById('watched-ads').textContent = normalAdsCount;
-                localStorage.setItem('normalAdsCount', normalAdsCount);
-                updateProgressCircle();
-                showSuccess('Auto Ad Completed!');
+        // Rewarded Interstitial Ad button
+        document.getElementById('interstitialBtn').addEventListener('click', () => {
+            const btn = document.getElementById('interstitialBtn');
+            btn.disabled = true;
+            btn.textContent = 'লোড হচ্ছে...';
 
-                if(normalAdsCount >= AD_LIMIT){
-                    stopAutoAds();
-                    showLimitModal('normal');
-                }
-            }).catch(err=>{
-                console.error(err);
-                // ফেল হলে অটো থামানো যেতে পারে, কিন্তু চালিয়ে রাখা হলো
-            });
-        } else {
-            stopAutoAds();
-            showLimitModal('normal');
-        }
-    }, 7000); // 7 সেকেন্ড গ্যাপ (পপআন্ডারের জন্য সেফ)
-    document.getElementById('auto-ad-btn').disabled = true;
-    document.getElementById('stop-auto-btn').disabled = false;
-}
+            show_10539995({ type: 'end' })  // default 'end' = Rewarded Interstitial
+                .then(result => {
+                    if (result.reward_event_type === 'valued') {
+                        points += 100;
+                        updatePoints();
+                        Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+                        alert('অভিনন্দন! আপনি ১০০ পয়েন্ট পেয়েছেন!');
+                    } else {
+                        alert('অ্যাড দেখানো হয়েছে, কিন্তু এবার রিওয়ার্ড হয়নি।');
+                    }
+                })
+                .catch(err => {
+                    alert('অ্যাড লোড হয়নি: ' + (err.message || 'চেষ্টা করুন পরে'));
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.textContent = 'ইন্টারস্টিশিয়াল অ্যাড দেখে ১০০ পয়েন্ট নিন';
+                });
+        });
 
-function stopAutoAds(){
-    clearInterval(autoAdInterval);
-    document.getElementById('auto-ad-btn').disabled = false;
-    document.getElementById('stop-auto-btn').disabled = true;
-}
-</script>
+        // Rewarded Popup Ad button
+        document.getElementById('popupBtn').addEventListener('click', () => {
+            const btn = document.getElementById('popupBtn');
+            btn.disabled = true;
+            btn.textContent = 'খোলা হচ্ছে...';
 
+            show_10539995({ type: 'pop' })  // 'pop' = Rewarded Popup
+                .then(result => {
+                    if (result.reward_event_type === 'valued') {
+                        points += 100;
+                        updatePoints();
+                        Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+                        alert('অভিনন্দন! আপনি ১০০ পয়েন্ট পেয়েছেন!');
+                    } else {
+                        alert('পপআপ খোলা হয়েছে, কিন্তু এবার রিওয়ার্ড হয়নি।');
+                    }
+                })
+                .catch(err => {
+                    alert('পপআপ খুলতে সমস্যা: ' + (err.message || 'আবার চেষ্টা করুন'));
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.textContent = 'পপআপ অ্যাড খুলে ১০০ পয়েন্ট নিন';
+                });
+        });
+    </script>
 </body>
 </html>
