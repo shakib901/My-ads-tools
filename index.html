@@ -256,7 +256,7 @@ h1 {
 </div>
 
 <a href="https://t.me/bestearningmethod" target="_blank" class="telegram-bubble">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+    <img src="https://upload.wikimedia.org/wikipedia/svg" alt="Telegram">
 </a>
 
 <div class="success-msg" id="success-msg">Ad Completed!</div>
@@ -346,12 +346,12 @@ function showLimitModal(mode){
     modal.style.display = 'flex';
 }
 
-// Normal Watch Ad
+// Normal Watch Ad (এখানে 'pop' যোগ করা হয়েছে যাতে পেজ রিডাইরেক্ট না হয়)
 document.getElementById('watch-ad-btn').addEventListener('click', ()=>{
     if(!monetagLoaded){ alert('Ad service not loaded yet!'); return; }
     if(!checkNormalLimit()){ showLimitModal('normal'); return; }
 
-    window[AD_FUNCTION_NAME]().then(()=>{
+    window[AD_FUNCTION_NAME]('pop').then(()=>{
         normalAdsCount++;
         document.getElementById('watched-ads').textContent = normalAdsCount;
         localStorage.setItem('normalAdsCount', normalAdsCount);
@@ -362,10 +362,10 @@ document.getElementById('watch-ad-btn').addEventListener('click', ()=>{
             showLimitModal('normal');
             stopAutoAds();
         }
-    }).catch(err=>{ console.error(err); alert('Ad failed!'); });
+    }).catch(err=>{ console.error(err); alert('Ad failed or blocked!'); });
 });
 
-// Reward Popup Ad
+// Reward Popup Ad (আগের মতোই)
 document.getElementById('reward-ad-btn').addEventListener('click', ()=>{
     if(!monetagLoaded){ alert('Ad service not loaded yet!'); return; }
     if(!checkRewardLimit()){ showLimitModal('reward'); return; }
@@ -384,17 +384,32 @@ document.getElementById('reward-ad-btn').addEventListener('click', ()=>{
     });
 });
 
-// Auto Ads
+// Auto Ads (এখানেও 'pop' ব্যবহার করা হচ্ছে)
 function startAutoAds(){
     if(!checkNormalLimit()) { showLimitModal('normal'); return; }
     autoAdInterval = setInterval(()=>{
         if(normalAdsCount < AD_LIMIT){
-            document.getElementById('watch-ad-btn').click();
+            // সরাসরি pop মোডে অ্যাড কল করা হচ্ছে
+            window[AD_FUNCTION_NAME]('pop').then(()=>{
+                normalAdsCount++;
+                document.getElementById('watched-ads').textContent = normalAdsCount;
+                localStorage.setItem('normalAdsCount', normalAdsCount);
+                updateProgressCircle();
+                showSuccess('Auto Ad Completed!');
+
+                if(normalAdsCount >= AD_LIMIT){
+                    stopAutoAds();
+                    showLimitModal('normal');
+                }
+            }).catch(err=>{
+                console.error(err);
+                // ফেল হলে অটো থামানো যেতে পারে, কিন্তু চালিয়ে রাখা হলো
+            });
         } else {
             stopAutoAds();
             showLimitModal('normal');
         }
-    }, 5000);
+    }, 7000); // 7 সেকেন্ড গ্যাপ (পপআন্ডারের জন্য সেফ)
     document.getElementById('auto-ad-btn').disabled = true;
     document.getElementById('stop-auto-btn').disabled = false;
 }
